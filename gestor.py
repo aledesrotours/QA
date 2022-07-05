@@ -20,12 +20,12 @@ def nuevo_equipo():
         print("Equipo agregado con exito!!!")
         return
     else:
-        print("El grupo de equipos esta lleno!!!")
+        print("\nEl grupo de equipos esta lleno!!!")
 
 def agregar_resultado():
 
     equipo_uno = input("\nIngrese el equipo uno: ").capitalize()
-    var = 0
+    var = 0 #Variable para chequear que los equipos existan
     for i in lista_equipos:
         if equipo_uno == i.get_nombre():
             print("Equipo existente")
@@ -35,7 +35,7 @@ def agregar_resultado():
         return
 
     equipo_dos = input("\nIngrese el equipo dos: ").capitalize()
-    var_dos = 0
+    var_dos = 0 #Variable para chequear que los equipos existan
     for i in lista_equipos:
         if equipo_dos == i.get_nombre():
             print("Equipo existente")
@@ -54,41 +54,42 @@ def agregar_resultado():
         if opcion == "1":
             for i in lista_equipos:
                 if equipo_uno == i.get_nombre():
-                    i.set_puntaje(3)
+                    i.set_puntaje(3) #Le sumo puntos al equipo ganador
                     print("Resultado agregado con exito!!!")
                     return
         elif opcion == "2":
             for i in lista_equipos:
                 if equipo_dos == i.get_nombre():
-                    i.set_puntaje(3)
+                    i.set_puntaje(3) #Le sumo puntos al equipo ganador
                     print("Resultado agregado con exito!!!")
                     return
         elif opcion == "3":
             for i in lista_equipos:
                 if equipo_uno == i.get_nombre():
-                    i.set_puntaje(1)
+                    i.set_puntaje(1) #Empate suma 1 cada uno
             for i in lista_equipos:
                 if equipo_dos == i.get_nombre():
-                    i.set_puntaje(1)
+                    i.set_puntaje(1) #Empate suma 1 cada uno
             print("Resultado agregado con exito!!!")
             return
         else:
             print("Reintentar, valor incorrecto")
 
 def mostrar_posicion():
-    lista_resultados = []
+    lista_resultados = [] #Voy agregar los puntajes de cada equipo
     for i in lista_equipos:
         valores_de_puntajes = i.get_puntaje()
         lista_resultados.append(valores_de_puntajes)
-    lista_resultados.sort(reverse=True)
+    lista_resultados_set = set(lista_resultados) #Borro los repetidos
+    lista_resultados_casteado = list(lista_resultados_set) #Casteo como lista
+    lista_resultados = lista_resultados_casteado
+    lista_resultados.sort(reverse = True) #El casteo me permite usar el sort
     print("\n---Tabla de posiciones---")
     for i in lista_resultados:
         for j in lista_equipos:
-            if i == j.get_puntaje():
+            if i == j.get_puntaje(): #Si i que es el resultado coincide con los equipos imprimo
                 print(f"Equipo: {j.get_nombre()}, Puntos: {j.get_puntaje()}")
-
-
-
+                
 # def mostrar_equipos():
 #     print("\n---EQUIPOS---")
 #     for i in lista_equipos:
